@@ -26,7 +26,13 @@ plugins=(git textmate osx ruby python)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export EDITOR=vim
+
+# Brew Cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export PYTHONPATH="$HOME/code"
 
 # vi mode
 bindkey -v
@@ -134,5 +140,7 @@ function myip() {
 s() { pwd > ~/.save_dir ; }
 i() { cd "$(cat ~/.save_dir)" ; }
 
-#
+# tmux
+alias tmux='tmux -2' # use 256 colors
+
 # finis
