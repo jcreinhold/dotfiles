@@ -138,6 +138,6 @@
     map <F2> :NERDTreeToggle<CR>
 
 "   powerline setup
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+    set guifont=Inconsolata\ for\ Powerline\:h15
     set laststatus=2
 
