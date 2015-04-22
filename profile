@@ -143,4 +143,7 @@ i() { cd "$(cat ~/.save_dir)" ; }
 # tmux
 alias tmux='tmux -2' # use 256 colors
 
+# g++
+alias g++="g++-5 -std=c++14"
+
 # finis
