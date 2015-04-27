@@ -16,7 +16,8 @@
     Bundle 'tpope/vim-fugitive'
     Bundle 'scrooloose/nerdtree'
     Bundle 'klen/python-mode'
-    
+    Bundle 'rizzatti/dash.vim'
+
     filetype plugin indent on
 
 "	indenting settings
