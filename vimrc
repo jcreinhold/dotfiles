@@ -1,15 +1,15 @@
 "	File: .vimrc
-"	Version: 3
+"	Version: 4
 "	Author: Jacob Reinhold
 
 "	use Vim settings
-	set nocompatible
+    set nocompatible
     filetype off
 
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
 
-	syntax on
+    syntax on
     
     Bundle 'gmarik/vundle'
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
@@ -17,15 +17,16 @@
     Bundle 'scrooloose/nerdtree'
     Bundle 'klen/python-mode'
     Bundle 'rizzatti/dash.vim'
+    Bundle 'xuhdev/vim-latex-live-preview'
 
     filetype plugin indent on
 
 "	indenting settings
-	set shiftwidth=4
-	set tabstop=4
+    set shiftwidth=4
+    set tabstop=4
     set softtabstop=4
-	set expandtab
-	set autoindent
+    set expandtab
+    set autoindent
 
 "   show line number
     set number
@@ -37,7 +38,7 @@
     set cursorline
 
 "	select when using mouse
-	set selectmode=mouse
+    set selectmode=mouse
 
 "	backup
     set backup
@@ -45,6 +46,9 @@
     set backupskip=/tmp/*,/private/tmp/*
     set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
     set writebackup
+
+"   disk write settings
+    set updatetime=1000
 
 "   folding
     set foldenable
@@ -54,35 +58,35 @@
     set foldmethod=indent
 
 "	display current mode
-	set showmode
+    set showmode
 
 "	allow backspacing in insert
-	set backspace=indent,eol,start
+    set backspace=indent,eol,start
 
 "	silent
-	set noerrorbells
+    set noerrorbells
 
-"	remap jj to escape
-	inoremap jj <Esc>
+"	remap ;; to escape
+    inoremap ;; <Esc>
+
+"   remap \pp to latex live-preview
+    nmap \pp :LLPStartPreview<CR>
 
 "	Searching
-	set incsearch
-	set hlsearch
+    set incsearch
+    set hlsearch
 "   turn off search highlight
     nnoremap <leader><space> :nohlsearch<CR>
 
 "	ignore case in search
-	set ignorecase
+    set ignorecase
 
 "   word wrap default off
     set nowrap
 
-"   toggle search highlight
-    nnoremap <F3> :set hlsearch!<CR>
-
 "   show matching part for [] {} ()
     set showmatch
-
+    
 "   enable all Python syntax highlighting features
     let python_highlight_all = 1
 
@@ -136,9 +140,11 @@
     let g:pymode_folding = 0
 
 "   nerdtree setup
-    map <F2> :NERDTreeToggle<CR>
+    nmap <F2> :NERDTreeToggle<CR>
 
 "   powerline setup
     set guifont=Inconsolata\ for\ Powerline\:h15
     set laststatus=2
 
+"   latex live preview
+    let g:livepreview_previewer = 'evince'

@@ -24,16 +24,15 @@ export ZSH_THEME="pure"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git textmate osx ruby python)
 
-source $ZSH/oh-my-zsh.sh
-
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin"
 export EDITOR=vim
-
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/opt/local/bin:/opt/local/sbin"
 # Brew Cask
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export PYTHONPATH="$HOME/code"
 
+source $ZSH/oh-my-zsh.sh
 # vi mode
 bindkey -v
 bindkey jj vi-cmd-mode
@@ -102,6 +101,7 @@ alias 'wordy=wc -w * | sort | tail -n10'
 alias 'filecount=ls -aRF | wc -l'
 
 alias 'pipupdate=pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'
+alias 'pip3update=pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip3 install -U'
 
 # -------------------------------------------------------------------
 # Functions ported directly from .bashrc
@@ -146,4 +146,18 @@ alias tmux='tmux -2' # use 256 colors
 # g++
 alias g++="g++-5 -std=c++14"
 
+# access online help
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# golang
+export GOROOT="/usr/local/opt/go/libexec/"
+export GOPATH="$HOME/code/golang"
+export PATH="$PATH:$GOROOT/bin"
+export PATH="$PATH:$GOPATH/bin"
 # finis
