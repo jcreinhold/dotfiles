@@ -67,7 +67,7 @@
     set noerrorbells
 
 "	remap ;; to escape
-    inoremap ;; <Esc>
+"    inoremap ;; <Esc>
 
 "   remap \pp to latex live-preview
     nmap \pp :LLPStartPreview<CR>

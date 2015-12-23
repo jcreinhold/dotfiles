@@ -144,7 +144,7 @@ i() { cd "$(cat ~/.save_dir)" ; }
 alias tmux='tmux -2' # use 256 colors
 
 # g++
-alias g++="g++-5 -std=c++14"
+#alias g++="g++-5 -std=c++14"
 
 # access online help
 unalias run-help
@@ -160,4 +160,11 @@ export GOROOT="/usr/local/opt/go/libexec/"
 export GOPATH="$HOME/code/golang"
 export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:$GOPATH/bin"
+
+# more path
+export PATH="$PATH:/usr/local/sbin"
+
+# virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+
 # finis
