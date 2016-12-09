@@ -43,7 +43,7 @@
     set tabstop=4
     set softtabstop=4
     set expandtab
-    set autoindent
+    "set autoindent
 
 "   show line number
     set number
@@ -63,6 +63,8 @@
     set backupskip=/tmp/*,/private/tmp/*
     set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
     set writebackup
+
+    set t_Co=256
 
 "   disk write settings
 "    set updatetime=2000
@@ -88,6 +90,8 @@
 
 "   remap \pp to latex live-preview
 "    nmap \pp :LLPStartPreview<CR>
+"    keep old command because use to it
+    nmap \pp :silent execute "!latexmk -lualatex -quiet % && latexmk -c -quiet"  \| :redraw!<CR>
 
 "	Searching
     set incsearch
@@ -165,15 +169,17 @@
     set laststatus=2
 
     let g:tex_flavor = "latex"
-    
 "   latex live preview
 "    let g:livepreview_previewer = 'open -a Preview'
 "    let g:Tex_DefaultTargetFormat='pdf'
 "    let g:Tex_MultipleCompileFormats='pdf'
 
+
+    let g:UltiSnipsUsePythonVersion = 3 
+    "let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpForwardTrigger="<CR>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " NeoComplete bindings.
@@ -234,9 +240,11 @@ augroup pencil
     autocmd FileType markdown,mkd call pencil#init()
 augroup END
 
+au Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
+
 " syntax highlighting for odd extensions
 au BufNewFile,BufRead *.cls set filetype=tex
-au Filetype plaintex,tex,latex setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=100
+au Filetype plaintex,tex,latex setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80
 
 " rainbowparens
 au VimEnter * RainbowParenthesesToggle
@@ -261,3 +269,18 @@ endfunction
 
 " supertab direction fixes
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" emphasize current splits.
+set colorcolumn=81 cul " on startup, since below is on WinEnter.
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set colorcolumn=81 cul
+    autocmd WinLeave * set colorcolumn=0  nocul
+augroup END
+
+" still need 256 colors, assumes black background
+highlight ColorColumn ctermbg=DarkGray" Grey7
+"highlight CursorLine ctermbg=DarkGray" Grey7
+
+" Setting mark column color.
+highlight SignColumn ctermbg=0

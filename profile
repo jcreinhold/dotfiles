@@ -118,8 +118,13 @@ alias tmux='tmux -2' # use 256 colors
 # vim
 alias vi='vim'
 
-# vim
-alias mylatexmk='latexmk -lualatex -quiet && latexmk -c -quiet'
+# latex make
+function mylatexmk() {
+    if [ -n "$1" ]
+    then
+    latexmk -lualatex -quiet $1 && latexmk -c -quiet
+    fi
+}
 
 # access online help
 unalias run-help
