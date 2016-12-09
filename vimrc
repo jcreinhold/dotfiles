@@ -7,19 +7,36 @@
     filetype off
 
     set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    call vundle#begin()
 
-    syntax on
-    
     Bundle 'gmarik/vundle'
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
     Bundle 'tpope/vim-fugitive'
     Bundle 'scrooloose/nerdtree'
     Bundle 'klen/python-mode'
     Bundle 'rizzatti/dash.vim'
-    Bundle 'xuhdev/vim-latex-live-preview'
+    "Bundle 'xuhdev/vim-latex-live-preview'
+    Bundle 'Raimondi/delimitMate'
+    Bundle 'kien/rainbow_parentheses.vim'
+    Bundle 'Shougo/neocomplete.vim'
+    Bundle 'Shougo/neoyank.vim'
+    Bundle 'Shougo/unite.vim'
+    Bundle 'rstacruz/vim-fastunite'
+    Bundle 'ervandew/supertab'
+    Bundle 'Konfekt/FastFold'
+    Bundle 'Sirver/ultisnips'
+    Bundle 'honza/vim-snippets'
+    Bundle 'reedes/vim-pencil'
+    Bundle 'davidhalter/jedi-vim'
 
+    " Better vim navigation.
+    Bundle 'kshenoy/vim-signature'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-commentary'
+    call vundle#end()
     filetype plugin indent on
+
+    syntax on
 
 "	indenting settings
     set shiftwidth=4
@@ -48,7 +65,7 @@
     set writebackup
 
 "   disk write settings
-    set updatetime=1000
+"    set updatetime=2000
 
 "   folding
     set foldenable
@@ -70,13 +87,14 @@
 "    inoremap ;; <Esc>
 
 "   remap \pp to latex live-preview
-    nmap \pp :LLPStartPreview<CR>
+"    nmap \pp :LLPStartPreview<CR>
 
 "	Searching
     set incsearch
     set hlsearch
-"   turn off search highlight
-    nnoremap <leader><space> :nohlsearch<CR>
+
+"   This unsets the "last search pattern" register by hitting return
+    nnoremap <CR> :noh<CR><CR>
 
 "	ignore case in search
     set ignorecase
@@ -146,5 +164,100 @@
     set guifont=Inconsolata\ for\ Powerline\:h15
     set laststatus=2
 
+    let g:tex_flavor = "latex"
+    
 "   latex live preview
-    let g:livepreview_previewer = 'evince'
+"    let g:livepreview_previewer = 'open -a Preview'
+"    let g:Tex_DefaultTargetFormat='pdf'
+"    let g:Tex_MultipleCompileFormats='pdf'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" NeoComplete bindings.
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define Dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+  \ 'default':    '',
+  \ }
+
+" Tab completion.
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+      endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() :"\<CR>"
+
+" Omnicompletion.
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+let g:neocomplete#force_omni_input_patterns.python =
+\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" }}}    
+
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+augroup END
+
+" syntax highlighting for odd extensions
+au BufNewFile,BufRead *.cls set filetype=tex
+au Filetype plaintex,tex,latex setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=100
+
+" rainbowparens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" Unite bindings.
+nnoremap <C-p> :Unite file_rec/async -start-insert -no-split<CR>
+nnoremap <space>/ :Unite grep:. -no-split<CR>
+nnoremap <C-y> :Unite history/yank<CR> " masks scroll up motion.
+nnoremap <C-e> :Unite -quick-match buffer -no-split<CR>
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" supertab direction fixes
+let g:SuperTabDefaultCompletionType = "<c-n>"
