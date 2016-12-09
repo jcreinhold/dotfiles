@@ -126,6 +126,8 @@ function mylatexmk() {
     fi
 }
 
+alias latexmk='latexmk -lualatex'
+
 # access online help
 unalias run-help
 autoload run-help

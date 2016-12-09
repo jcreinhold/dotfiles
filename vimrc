@@ -16,7 +16,8 @@
     Bundle 'klen/python-mode'
     Bundle 'rizzatti/dash.vim'
     "Bundle 'xuhdev/vim-latex-live-preview'
-    Bundle 'Raimondi/delimitMate'
+    "Bundle 'Raimondi/delimitMate'
+    Bundle 'jiangmiao/auto-pairs'
     Bundle 'kien/rainbow_parentheses.vim'
     Bundle 'Shougo/neocomplete.vim'
     Bundle 'Shougo/neoyank.vim'
@@ -91,7 +92,8 @@
 "   remap \pp to latex live-preview
 "    nmap \pp :LLPStartPreview<CR>
 "    keep old command because use to it
-    nmap \pp :silent execute "!latexmk -lualatex -quiet % && latexmk -c -quiet"  \| :redraw!<CR>
+    "nmap \pp :silent execute "!latexmk -lualatex -quiet % && latexmk -c -quiet"  \| :redraw!<CR>
+    nmap \pp :silent execute "!latexmk -lualatex %"  \| :redraw!<CR>
 
 "	Searching
     set incsearch
