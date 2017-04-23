@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-export ZSH_THEME="pure"
+export ZSH_THEME="refined"
 
 plugins=(git textmate osx ruby python)
 
@@ -26,3 +26,6 @@ export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-darwin"
 
 # added by Anaconda3 4.3.0 installer
 export PATH="/Users/jacobreinhold/anaconda3/bin:$PATH"
+
+# bazel
+export PATH="$PATH:$HOME/bin"
