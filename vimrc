@@ -57,6 +57,7 @@
 
 "   make latex files
     nmap \pp :silent execute "!latexmk -lualatex -latexoption='--shell-escape' %"  \| :redraw!<CR>
+    nmap \oo :silent execute "!latexmk -xelatex -latexoption='--shell-escape' %"  \| :redraw!<CR>
 
 "	Searching
     set incsearch
