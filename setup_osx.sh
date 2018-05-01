@@ -103,15 +103,7 @@ read -p "Install Anaconda? [Y,n]" anaconda_install
 CONDA_INSTALL=${anaconda_install:-Y}
 case $CONDA_INSTALL in
     y|Y) 
-        echo "Downloading Anaconda"
-        cd ~/Downloads
-        curl -O https://repo.continuum.io/archive/Anaconda3-4.3.1-MacOSX-x86_64.sh
-        echo "Installing Anaconda"
-        chmod 755 ./Anaconda3-4.3.1-MacOSX-x86_64.sh
-        ./Anaconda3-4.3.1-MacOSX-x86_64.sh
-        echo "Updating Anaconda"
-        conda update conda
-        conda update anaconda
+        ~/Code/dotfiles/install_conda.sh
         ;;
     n|N) echo "Skipping." ;;
     *) echo "Bad input." exit 1 ;;
