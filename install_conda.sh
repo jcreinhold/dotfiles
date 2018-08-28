@@ -12,3 +12,5 @@ chmod 755 Miniconda3*.sh
 ./Miniconda3*.sh -b
 
 rm Miniconda3*.sh
+
+conda update --all --yes
