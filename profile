@@ -18,4 +18,10 @@ fi
 # add for extended glob features (e.g., rm !(file.txt) to remove everything but file.txt)
 shopt -s extglob
 
+# add colors to command line in osx
 export CLICOLOR=1
+
+# enable a longer history
+HISTFILESIZE=10000
+HISTSIZE=2000
+export HISTSIZE HISTFILESIZE
