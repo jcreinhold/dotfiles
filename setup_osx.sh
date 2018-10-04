@@ -1,13 +1,5 @@
 #!/bin/bash
 
-read -p "Is xcode installed? [Y,n]" xcode_installed
-XCODE_INSTALLED=${xcode_installed:-Y}
-case $XCODE_INSTALLED in
-    y|Y) echo "Continuing with setup." ;;
-    n|N) echo "First install xcode." exit 1;;
-    *) echo "Bad input." exit 1;;
-esac
-
 read -p "Install command line tools? [Y,n]" clt_install
 CLT_INSTALL=${clt_install:-Y}
 case $CLT_INSTALL in
@@ -38,35 +30,12 @@ case $BREW_PACKAGES in
     y|Y) 
         echo "Installing packages through brew."
         brew update
-        brew tap homebrew/science
         packages=(
             git
             tmux
         )
         brew install ${packages[@]}
         brew cleanup
-        ;;
-    n|N) echo "Skipping." ;;
-    *) echo "Bad input." exit 1 ;;
-esac
-
-read -p "Install brew cask packages? [Y,n]" brew_cask
-BREW_CASK=${brew_cask:-Y}
-case $BREW_CASK in
-    y|Y) 
-        echo "Installing cask packages through brew."
-        brew install caskroom/cask/brew-cask
-        apps=(
-            google-drive
-            iterm2
-            bettertouchtool
-            flash
-            flux
-            caffeine
-            mactex
-            steam
-        )
-        brew cask install --appdir="/Applications" ${apps[@]}
         ;;
     n|N) echo "Skipping." ;;
     *) echo "Bad input." exit 1 ;;
@@ -83,9 +52,7 @@ case $GIT_REPOS in
         git clone https://github.com/jcreinhold/dotfiles.git
         
         mkdir ~/Research
-        cd ~/Research
-        git clone https://github.com/jcreinhold/scs-evolutionary-clustering.git
-        git clone https://jcreinhold@gitlab.com/jcreinhold/image-analysis.git
+	echo "You will need to setup the research directory!"
 
         echo "Symlinking dotfiles"
         cd ~

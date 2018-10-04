@@ -1,23 +1,8 @@
 # use custom prompt
 source $HOME/Code/dotfiles/ps1prompt
 
-# save unmodified path
-export OLD_PATH=$PATH
-
-# load rbenv 
-eval "$(rbenv init -)"
-
-# add miniconda to path
-export PATH="/Users/jreinhold/miniconda3/bin:$PATH"
-export NEW_PATH=$PATH
-
-# disable or enable conda by removing/adding it to path
-disable_conda () { 
-    export PATH=$OLD_PATH 
-}
-enable_conda () { 
-    export PATH=$NEW_PATH 
-}
+# add conda to path
+export PATH="/Users/jcreinhold/miniconda3/bin:$PATH"
 
 # set timezone so MATLAB stops complaining during parallel processing
 export TZ=America/New_York
@@ -26,3 +11,11 @@ export TZ=America/New_York
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
+
+# enable conda activate
+. /Users/jcreinhold/miniconda3/etc/profile.d/conda.sh
+
+# add for extended glob features (e.g., rm !(file.txt) to remove everything but file.txt)
+shopt -s extglob
+
+export CLICOLOR=1
