@@ -1,11 +1,9 @@
 "	File: .vimrc
-"	Version: 4
+"	Version: 5
 "	Author: Jacob Reinhold
 
-"	use Vim settings
     set nocompatible
-    filetype off
-
+    filetype plugin indent on
     syntax on
 
 "	indenting settings
@@ -37,7 +35,7 @@
     set t_Co=256
 
 "   disk write settings
-"    set updatetime=2000
+    "set updatetime=2000
 
 "   folding
     set foldenable
@@ -58,6 +56,7 @@
 "   make latex files
     nmap \pp :silent execute "!latexmk -lualatex -latexoption='--shell-escape' %"  \| :redraw!<CR>
     nmap \oo :silent execute "!latexmk -xelatex -latexoption='--shell-escape' %"  \| :redraw!<CR>
+    nmap \ii :silent execute "!latexmk -pdf -latexoption='--shell-escape' %"  \| :redraw!<CR>
 
 "	Searching
     set incsearch
@@ -86,23 +85,32 @@
     let g:tex_flavor = "latex"
 
 " syntax stuff for python
-au Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
+    au Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 
 " syntax highlighting for odd extensions
-au BufNewFile,BufRead *.cls set filetype=tex
-au Filetype plaintex,tex,latex setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80
+    au BufNewFile,BufRead *.cls set filetype=tex
+    au Filetype plaintex,tex,latex setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=0
 
 " emphasize current splits.
-set colorcolumn=81 cul " on startup, since below is on WinEnter.
-augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set colorcolumn=81 cul
-    autocmd WinLeave * set colorcolumn=0  nocul
-augroup END
+    set colorcolumn=81 cul " on startup, since below is on WinEnter.
+    augroup BgHighlight
+        autocmd!
+        autocmd WinEnter * set colorcolumn=81 cul
+        autocmd WinLeave * set colorcolumn=0  nocul
+    augroup END
 
 " still need 256 colors, assumes black background
-highlight ColorColumn ctermbg=DarkGray" Grey7
-"highlight CursorLine ctermbg=DarkGray" Grey7
+    highlight ColorColumn ctermbg=DarkGray" Grey7
+    "highlight CursorLine ctermbg=DarkGray" Grey7
 
 " Setting mark column color.
-highlight SignColumn ctermbg=0
+    highlight SignColumn ctermbg=0
+
+" Haskell
+    let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+    let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+    let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+    let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+    let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+    let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+    let g:haskell_backpack = 1                " to enable highlighting of backpack keywords

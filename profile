@@ -1,8 +1,21 @@
-# use custom prompt
-source $HOME/Code/dotfiles/ps1prompt
+# bash specific options
+if [ -n "$BASH_VERSION" ]; then
+    # custom command prompt
+    source $HOME/Code/dotfiles/ps1prompt
+    # add for extended glob features (e.g., rm !(file.txt) to remove everything but file.txt)
+    shopt -s extglob
+    # shell integration for iterm on macbook
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+fi
+
+# add colors to command line in osx
+export CLICOLOR=1
 
 # add conda to path
 export PATH="/Users/jcreinhold/miniconda3/bin:$PATH"
+
+# add sbin to path
+export PATH="/usr/local/sbin:$PATH"
 
 # set timezone so MATLAB stops complaining during parallel processing
 export TZ=America/New_York
@@ -13,13 +26,7 @@ if [ -f ~/.aliases ]; then
 fi
 
 # enable conda activate
-. /Users/jcreinhold/miniconda3/etc/profile.d/conda.sh
-
-# add for extended glob features (e.g., rm !(file.txt) to remove everything but file.txt)
-shopt -s extglob
-
-# add colors to command line in osx
-export CLICOLOR=1
+source /Users/jcreinhold/miniconda3/etc/profile.d/conda.sh
 
 # enable a longer history
 HISTFILESIZE=10000
