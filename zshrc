@@ -11,6 +11,8 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 antigen bundle rupa/z
 
+antigen theme candy
+
 antigen apply
 
 source ~/.profile

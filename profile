@@ -12,7 +12,7 @@ fi
 export CLICOLOR=1
 
 # add conda to path
-export PATH="/Users/jcreinhold/miniconda3/bin:$PATH"
+export PATH="${HOME}/miniconda3/bin:$PATH"
 
 # add sbin to path
 export PATH="/usr/local/sbin:$PATH"
@@ -26,7 +26,7 @@ if [ -f ~/.aliases ]; then
 fi
 
 # enable conda activate
-source /Users/jcreinhold/miniconda3/etc/profile.d/conda.sh
+source $HOME/miniconda3/etc/profile.d/conda.sh
 
 # enable a longer history
 HISTFILESIZE=10000
