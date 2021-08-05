@@ -32,3 +32,8 @@ source $HOME/miniconda3/etc/profile.d/conda.sh
 HISTFILESIZE=10000
 HISTSIZE=2000
 export HISTSIZE HISTFILESIZE
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
