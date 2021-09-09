@@ -37,3 +37,10 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 
+# aws
+export AWS_DEFAULT_PROFILE=saml 
+export AWS_REGION=us-east-1
+
+# ocaml opam
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+. "$HOME/.cargo/env"

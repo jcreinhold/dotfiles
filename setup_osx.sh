@@ -59,6 +59,7 @@ case $GIT_REPOS in
         ln -s Code/dotfiles/profile .profile
         ln -s Code/dotfiles/vimrc .vimrc
         ln -s Code/dotfiles/tmux.conf .tmux.conf
+        ln -s Code/dotfiles/ghci .ghci
         source ~/.profile
         ;;
     n|N) echo "Skipping." ;;
