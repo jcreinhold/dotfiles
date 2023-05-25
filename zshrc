@@ -3,11 +3,6 @@ fpath+=("${HOME}/.zsh/pure")
 autoload -U promptinit; promptinit
 prompt pure
 
-<<<<<<< Updated upstream
-antigen theme candy
-
-antigen apply
-=======
 # add colors to command line in osx
 export CLICOLOR=1
 
@@ -83,5 +78,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
->>>>>>> Stashed changes
 
