@@ -1,25 +1,13 @@
-# bash specific options
-if [ -n "$BASH_VERSION" ]; then
-    # custom command prompt
-    source $HOME/Code/dotfiles/ps1prompt
-    # add for extended glob features (e.g., rm !(file.txt) to remove everything but file.txt)
-    shopt -s extglob
-    # shell integration for iterm on macbook
-    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-fi
-
-# add colors to command line in osx
-export CLICOLOR=1
-
 # add conda to path
 export PATH="${HOME}/miniconda3/bin:$PATH"
 
 # add sbin to path
 export PATH="/usr/local/sbin:$PATH"
 
-# set timezone so MATLAB stops complaining during parallel processing
-export TZ=America/New_York
+# Lean
+export PATH="$HOME/.elan/bin:$PATH"
 
+<<<<<<< Updated upstream
 # add convenience aliases
 if [ -f ~/.aliases ]; then
     source ~/.aliases
@@ -44,3 +32,5 @@ export AWS_REGION=us-east-1
 # ocaml opam
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 . "$HOME/.cargo/env"
+=======
+>>>>>>> Stashed changes
